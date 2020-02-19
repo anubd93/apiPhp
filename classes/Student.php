@@ -8,7 +8,7 @@
 		private $conn; 
 		private $table_name;
 
-		public function __contruct($db){
+		public function __construct($db){
 			$this->conn = $db;
 			$this->table_name = "tbl_students";	
 		}
@@ -18,7 +18,9 @@
 			// insert query
 
 			$query = "INSERT INTO " . $this->table_name . "SET name = ?, email = ?, mobile = ?";
+			// var_dump($this->conn); exit();
 			$obj = $this->conn->prepare($query);
+			// var_dump($obj); exit();
 
 			// sanitize input data
 
@@ -27,11 +29,12 @@
 			$this->mobile = htmlspecialchars(strip_tags($this->mobile));
 
 			$obj->bind_param("sss" , $this->name, $this->email, $this->mobile);
+
 			if ($obj->execute()) {
 				return true;
-			} else {
-				return false;
-			}
+			} 
+
+			return false;
 
 		}
 
