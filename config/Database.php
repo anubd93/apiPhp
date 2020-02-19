@@ -14,9 +14,9 @@
 			$this->password = "";
 			$this->dbName = "rest_php_api";
 
-			$this->const  = new mysqli($this->hostName, $this->userName, $this->password, $this->dbName);
+			$this->conn = new mysqli($this->hostName, $this->userName, $this->password, $this->dbName);
 			if ($this->conn->connect_errno) {
-				print_r($this->conn->connect_errno);
+				print_r($this->conn->connect_error);
 				exit();
 			} else {
 				return $this->conn;
@@ -25,4 +25,8 @@
 		}
 
 	}
+
+	$db = new Database();
+	$db->connect();
+
 ?>
