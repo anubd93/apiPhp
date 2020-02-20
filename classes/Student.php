@@ -17,9 +17,12 @@
 
 			// insert query
 
-			$query = "INSERT INTO " . $this->table_name . "SET name = ?, email = ?, mobile = ?";
+			$query = "INSERT INTO " .$this->table_name ." SET name = ?, email = ?, mobile = ?";
 			// var_dump($this->conn); exit();
 			$obj = $this->conn->prepare($query);
+
+			// echo $query;die();
+			// echo $this->conn->error;die;
 			// var_dump($obj); exit();
 
 			// sanitize input data
@@ -27,6 +30,8 @@
 			$this->name = htmlspecialchars(strip_tags($this->name));
 			$this->email = htmlspecialchars(strip_tags($this->email));
 			$this->mobile = htmlspecialchars(strip_tags($this->mobile));
+
+			// var_dump($obj); exit();
 
 			$obj->bind_param("sss" , $this->name, $this->email, $this->mobile);
 
