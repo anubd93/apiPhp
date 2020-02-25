@@ -43,5 +43,14 @@
 
 		}
 
+		public function get_all_student(){
+			$sql_query = "SELECT * from ".$this->table_name;
+			$std_obj = $this->conn->prepare($sql_query);
+			$std_obj->execute();
+
+			return $std_obj->get_result();
+
+		}
+
 	}
 ?>
