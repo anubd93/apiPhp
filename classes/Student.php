@@ -52,5 +52,17 @@
 
 		}
 
+		public function get_single_student(){
+			$sql_query = "SELECT * from ".$this->table_name. " WHERE id = ?";
+			$std_obj = $this->conn->prepare($sql_query);
+			$std_obj->bind_param("i", $this->id);
+			$std_obj->execute();
+
+			$data = $std_obj->get_result();
+
+			return $data->fetch_assoc();
+
+		}
+
 	}
 ?>
